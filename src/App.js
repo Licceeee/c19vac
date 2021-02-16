@@ -4,16 +4,16 @@ import { getData } from './Api'
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Main from './components/Main';
+import Vaccine from './components/Vaccine';
+import Statistics from './components/Statistics';
 
 function App() {
-  // const [data, setData] = useState();    GET ALL DATA
+  const [data, setData] = useState();
   const [vaccineType, setVaccineType] = useState([]);
-  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
       try {
         // getData().then(result => setData(result));    SET ALL DATA
-        getData("pharmaCompany").then(result => setCompanies(result));
         getData("vaccineType").then(result => setVaccineType(result));
 
       } catch (error) {
@@ -21,10 +21,20 @@ function App() {
       }
   }, []);
 
+
+  useEffect(() => {
+    fetch("https://thevirustracker.com/free-api?global=stats%22")
+    .then(response => response.text())
+    .then(result => setData(result))
+    .catch(error => console.log('error', error));
+  }, []);
+
   return (
     <div className="App">
       <Nav />
-      <Main companies={companies} vaccineType={vaccineType}/>
+      <Main vaccineType={vaccineType}/>
+      <Vaccine />
+      <Statistics />
       <Footer />
     </div>
   );

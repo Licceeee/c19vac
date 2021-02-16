@@ -1,39 +1,44 @@
 import React from 'react';
 import Details from "./Details";
+import { makeStyles } from '@material-ui/core/styles';
+import Grid from '@material-ui/core/Grid';
+import Header from './Header'
+import Card from './Card'
 
-const Main = ({ companies, vaccineType }) => {
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      padding: 0,
+      margin: 0,
+    },
+  }));
+
+
+const Main = ({ vaccineType }) => {
+
+    const classes = useStyles();
+
     return (
-        <header className="App-header">
-            <h1 className="mb-5">welcome to c19vac</h1>
-            <div className="row">
+        <>
+            <Header />
 
-                <div className="col-6 text-left">
-                    <h2>Companies</h2>
-                    {companies && companies.map((company, index) => {
+            <h2>Vaccine Types</h2>
 
-                    return (<div key={index}>
-                                <p>{company.fields.name}</p>
-                            </div>
-                        )
+            <div className={classes.root}>
+                <Grid container spacing={6}>
+
+                    {vaccineType && vaccineType.map((vac, index) => {
+
+                        return <Card key={index} {...vac} />
+
                     })}
-                </div>
 
-                <div className="col-6 text-left">
-                    <h2>Vaccine Types</h2>
-                        {vaccineType && vaccineType.map((vac, index) => {
-
-                        return (<div key={index}>
-                                    <p>{vac.fields.name}</p>
-                                </div>
-                            )
-                        })}
-                </div>
-                <hr/>
-
+                </Grid>
             </div>
             <Details />
         </header>
-      
+        </>
     );
 }
 
