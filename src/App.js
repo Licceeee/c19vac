@@ -1,33 +1,30 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { client } from './client'
+import { getData } from './Api'
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import Main from './components/Main';
 
 function App() {
-
-  const [data, setData] = useState();
+  // const [data, setData] = useState();    GET ALL DATA
+  const [vaccineType, setVaccineType] = useState([]);
+  const [companies, setCompanies] = useState([]);
 
   useEffect(() => {
-    client.getEntries()
-    .then((response) => {
-      console.log(response)
-      setData(response.items);
-    })
-    .catch(console.error)
+      try {
+        // getData().then(result => setData(result));    SET ALL DATA
+        getData("pharmaCompany").then(result => setCompanies(result));
+        getData("vaccineType").then(result => setVaccineType(result));
+
+      } catch (error) {
+          console.log(error);
+      }
   }, []);
 
   return (
     <div className="App">
       <Nav />
-      <header className="App-header">
-        <h1>welcome to c19vac</h1>
-        <div className="container">
-          {data && data.map((item) => {
-            return <p key={item.sys.id}>{item.fields.name}</p>
-          })}
-        </div>
-      </header>
+      <Main companies={companies} vaccineType={vaccineType}/>
       <Footer />
     </div>
   );
