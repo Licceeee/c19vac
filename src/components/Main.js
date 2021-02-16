@@ -1,4 +1,5 @@
 import React from 'react';
+import Details from "./Details";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header'
@@ -35,6 +36,8 @@ const Main = ({ vaccineType }) => {
 
                 </Grid>
             </div>
+            <Details />
+        </header>
         </>
     );
 }
