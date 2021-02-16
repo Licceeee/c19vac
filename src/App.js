@@ -17,6 +17,16 @@ function App() {
     .catch(console.error)
   }, []);
 
+  useEffect(() => {
+  fetch("https://thevirustracker.com/free-api?global=stats")
+    .then(response => response.text())
+    .then(result => setData(result))
+    .catch(error => console.log('error', error));
+  }, []);
+
+  console.log("data", data)
+
+
   return (
     <div className="App">
       <Nav />
