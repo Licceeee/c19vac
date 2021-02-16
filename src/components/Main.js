@@ -1,4 +1,5 @@
 import React from 'react';
+import Details from "./Details";
 
 const Main = ({ companies, vaccineType }) => {
     return (
@@ -30,6 +31,7 @@ const Main = ({ companies, vaccineType }) => {
                 <hr/>
 
             </div>
+            <Details />
         </header>
       
     );
