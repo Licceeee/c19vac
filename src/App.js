@@ -8,7 +8,7 @@ import Vaccine from './components/Vaccine';
 import Statistics from './components/Statistics';
 
 function App() {
-  // const [data, setData] = useState();    GET ALL DATA
+  const [data, setData] = useState();
   const [vaccineType, setVaccineType] = useState([]);
 
   useEffect(() => {
@@ -19,6 +19,14 @@ function App() {
       } catch (error) {
           console.log(error);
       }
+  }, []);
+
+
+  useEffect(() => {
+    fetch("https://thevirustracker.com/free-api?global=stats%22")
+    .then(response => response.text())
+    .then(result => setData(result))
+    .catch(error => console.log('error', error));
   }, []);
 
   return (
