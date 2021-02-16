@@ -8,11 +8,11 @@ import Card from './Card'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
-      padding: 0,
-      margin: 0,
+        flexGrow: 1,
+        padding: 0,
+        margin: 0,
     },
-  }));
+}));
 
 
 const Main = ({ vaccineType }) => {
@@ -37,7 +37,6 @@ const Main = ({ vaccineType }) => {
                 </Grid>
             </div>
             <Details />
-        </header>
         </>
     );
 }

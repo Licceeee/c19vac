@@ -7,44 +7,52 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles({
 table: {
-    minWidth: 650,
+    minWidth: 650,  
 },
 });
 
-function createData(name, calories, fat, carbs, protein) {
-return { name, calories, fat, carbs, protein };
-}
+function createData(name, effectiveness, type, cost, productionIn2021
+    ) {
+return { name, effectiveness, type, cost, productionIn2021
+};
+}   
 
 const rows = [
-createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-createData('Eclair', 262, 16.0, 24, 6.0),
-createData('Cupcake', 305, 3.7, 67, 4.3),
-createData('Gingerbread', 356, 16.0, 49, 3.9),
+createData('PFIZER-BIONTECH', "95%", 'mRNA-based', '$20', '1.3 billion doses'),
+createData('MODERNA', "94,10%", 'mRNA-based', "$15-25", '1 billion doses'),
+createData('ASTRAZENECA-OXFORD', "70%", 'adenovirus vector', '$4', '3 billion doses'),
+createData('X', 0, 0, 0, 0),
+createData('Y', 0, 0, 0, 0),
 ];
+
+const defaultProps = {
+    bgcolor: 'background.paper',
+    border: 1,
+    m: 1,
+    borderColor: 'text.primary',
+    style: { width: '5rem', height: '5rem' },
+};
 
 const Details = () => {
     const classes = useStyles();
     return (
-        <div>
-            <h1>Info about vaccine</h1>
-            <h3>Companies that r producing it + description</h3>
-            <p>effectiveness general</p>
-            <p>effectiveness mutation % </p>
-            <p>side effects?</p>
-            <p>safety</p>
-            <TableContainer component={Paper}>
-    <Table className={classes.table} aria-label="simple table">
+    <div>
+        <h1>Info about vaccine</h1>
+        <h3>Companies that r producing it + description</h3>
+        <Box border={10} borderRadius={15} borderColor="text.disabled" width="75%" mx="auto">
+        <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
         <TableHead>
         <TableRow>
-            <TableCell>Dessert (100g serving)</TableCell>
-            <TableCell align="right">Calories</TableCell>
-            <TableCell align="right">Fat&nbsp;(g)</TableCell>
-            <TableCell align="right">Carbs&nbsp;(g)</TableCell>
-            <TableCell align="right">Protein&nbsp;(g)</TableCell>
+            <TableCell>Vaccine name</TableCell>
+            <TableCell align="right">Effectiveness</TableCell>
+            <TableCell align="right">Type</TableCell>
+            <TableCell align="right">Cost per dose</TableCell>
+            <TableCell align="right">Predicted production in 2021</TableCell>
         </TableRow>
         </TableHead>
         <TableBody>
@@ -53,16 +61,18 @@ const Details = () => {
         <TableCell component="th" scope="row">
                 {row.name}
             </TableCell>
-            <TableCell align="right">{row.calories}</TableCell>
-            <TableCell align="right">{row.fat}</TableCell>
-            <TableCell align="right">{row.carbs}</TableCell>
-            <TableCell align="right">{row.protein}</TableCell>
+            <TableCell align="right">{row.effectiveness}</TableCell>
+            <TableCell align="right">{row.type}</TableCell>
+            <TableCell align="right">{row.cost}</TableCell>
+            <TableCell align="right">{row.productionIn2021}</TableCell>
             </TableRow>
         ))}
         </TableBody>
     </Table>
     </TableContainer>
-        </div>
+    </Box>
+    <br/>
+    </div>
     )
 }
 
