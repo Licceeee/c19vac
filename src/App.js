@@ -1,20 +1,32 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { client } from './client'
+import { getData } from './Api'
 import Nav from './components/Nav';
 import Footer from './components/Footer';
+import Main from './components/Main';
+import Vaccine from './components/Vaccine';
+import Statistics from './components/Statistics';
 
 function App() {
-
   const [data, setData] = useState();
+  const [vaccineType, setVaccineType] = useState([]);
 
   useEffect(() => {
-    client.getEntries()
-    .then((response) => {
-      console.log(response)
-      setData(response.items);
-    })
-    .catch(console.error)
+      try {
+        // getData().then(result => setData(result));    SET ALL DATA
+        getData("vaccineType").then(result => setVaccineType(result));
+
+      } catch (error) {
+          console.log(error);
+      }
+  }, []);
+
+
+  useEffect(() => {
+    fetch("https://thevirustracker.com/free-api?global=stats%22")
+    .then(response => response.text())
+    .then(result => setData(result))
+    .catch(error => console.log('error', error));
   }, []);
 
   useEffect(() => {
@@ -30,14 +42,9 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      <header className="App-header">
-        <h1>welcome to c19vac</h1>
-        <div className="container">
-          {data && data.map((item) => {
-            return <p key={item.sys.id}>{item.fields.name}</p>
-          })}
-        </div>
-      </header>
+      <Main vaccineType={vaccineType}/>
+      <Vaccine />
+      <Statistics />
       <Footer />
     </div>
   );
