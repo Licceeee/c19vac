@@ -6,11 +6,25 @@ const client = contentful.createClient({
 })
 
 // returns data from contenful ** filter optional
-export const getData = (filter) => {
-    return client.getEntries(
-        filter && {
-            content_type: filter
-        }
-    ).then(response =>  response.items);
+const getContentfulData = (filter) => {
+    try {
+        return client.getEntries(
+            filter && {
+                content_type: filter
+            }
+        ).then(response =>  response.items);
+    } catch (error) {
+        console.log(error);
+    }
 }
 
+const getApiData = (url) => {
+    try {
+        return fetch(url).then(response => response.json())
+    } catch (error) {
+        console.log(error);
+    } 
+}
+
+
+export { getContentfulData, getApiData };
