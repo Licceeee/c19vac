@@ -3,7 +3,7 @@ import Container from '@material-ui/core/Container';
 
 const Statistics = ({data, states}) => {
 
-    states && console.log(states)
+    // states && console.log(states)
 
     // const newArr = states.slice(0, 11)
 

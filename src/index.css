@@ -15,7 +15,6 @@ code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-
 .border-stuff {
     border: 1px black;
 }
@@ -45,12 +44,15 @@ td {
 .alicia:hover {
     transform: scale(1.5);
 }
+
 .reza:hover {
     transform: scale(1.5);
 }
+
 .selma:hover {
     transform: scale(1.5);
 }
+
 .facebook:hover {
     transform: scale(1.5);
 }
@@ -63,3 +65,6 @@ td {
     transform: scale(1.5);
 }
 
+.link {
+    color: #282c34 !important;
+}

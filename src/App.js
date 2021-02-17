@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
 import { getContentfulData, getApiData } from './Api'
+import { Switch, Route } from "react-router-dom";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Main from './components/Main';
@@ -12,6 +13,7 @@ function App() {
   const [vaccineTypes, setVaccineTypes] = useState([]);
   const [states, setStates] = useState([]);
 
+  // TODO conditional fetching https://api.covid19api.com/summary
 
   useEffect(() => {
     // getData().then(result => setData(result));    SET ALL DATA
@@ -33,12 +35,23 @@ function App() {
   return (
     <div className="App">
       <Nav />
-      
-      <Main vaccineTypes={vaccineTypes}/>
-      {vaccineTypes[0] && <Details vaccine={vaccineTypes[0]}/>}
+      <Switch>
 
-      {data && <Statistics data={data} states={states}/>}
-      
+      <Route exact path="/">
+          <Main vaccineTypes={vaccineTypes}/>
+          {data && <Statistics data={data} states={states}/>}
+
+      </Route>
+
+
+      <Route path="/:id">
+          {vaccineTypes && <Details vaccines={vaccineTypes}/>}
+      </Route>
+
+      </Switch>
+
+      {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
+     
       <Footer />
     </div>
   );

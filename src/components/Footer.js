@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
       width: theme.spacing(7),
       height: theme.spacing(7),
     },
+    icon: {
+      color: '#1565c0',
+    }
   }));
 
  const Footer = () =>  {
@@ -51,9 +54,9 @@ const useStyles = makeStyles((theme) => ({
                         </div>
                     </div>
                     <div className="footer-column-3">
-                        <a href="https://www.facebook.com/" className="facebook"><FacebookIcon color="#1565c0" fontSize="large" /></a>
-                        <a href="https://twitter.com/?lang=en" className="twitter"><TwitterIcon color="#1565c0" fontSize="large" /></a>
-                        <a href="https://www.instagram.com/" className="instagram"><InstagramIcon color="#1565c0" fontSize="large" /></a>
+                        <a href="https://www.facebook.com/" className="facebook"><FacebookIcon fontSize="large" /></a>
+                        <a href="https://twitter.com/?lang=en" className="twitter"><TwitterIcon fontSize="large" /></a>
+                        <a href="https://www.instagram.com/" className="instagram"><InstagramIcon fontSize="large" /></a>
                     </div>
                 </div>
             </footer>
