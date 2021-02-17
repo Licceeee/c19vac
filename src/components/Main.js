@@ -3,8 +3,8 @@ import Details from "./Details";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header'
-import Card from './Card'
-
+import MyCard from './MyCard'
+import Container from '@material-ui/core/Container';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -15,7 +15,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const Main = ({ vaccineType }) => {
+const Main = ({ vaccineTypes }) => {
 
     const classes = useStyles();
 
@@ -23,20 +23,22 @@ const Main = ({ vaccineType }) => {
         <>
             <Header />
 
-            <h2>Vaccine Types</h2>
+            <Container maxWidth="lg">
+                <h2>Vaccine Types</h2>
 
-            <div className={classes.root}>
-                <Grid container spacing={6}>
+                <div className={classes.root}>
+                    <Grid container spacing={6}>
 
-                    {vaccineType && vaccineType.map((vac, index) => {
+                        {vaccineTypes && vaccineTypes.map((vac) => {
 
-                        return <Card key={index} {...vac} />
+                            return <MyCard key={vac.sys.id} {...vac} id={vac.sys.id}/>
 
-                    })}
+                        })}
 
-                </Grid>
-            </div>
-            <Details />
+                    </Grid>
+                </div>
+
+            </Container>
         </>
     );
 }

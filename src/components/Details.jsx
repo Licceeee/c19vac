@@ -37,8 +37,12 @@ const defaultProps = {
     style: { width: '5rem', height: '5rem' },
 };
 
-const Details = () => {
+const Details = ({ vaccine }) => {
     const classes = useStyles();
+
+    console.log(vaccine)
+    console.log(vaccine.fields.name)
+
     return (
     <div>
         <h1>Info about vaccine</h1>
@@ -61,7 +65,7 @@ const Details = () => {
         <TableCell component="th" scope="row">
                 {row.name}
             </TableCell>
-            <TableCell align="right">{row.effectiveness}</TableCell>
+            <TableCell align="right">{vaccine.fields.benefits}</TableCell>
             <TableCell align="right">{row.type}</TableCell>
             <TableCell align="right">{row.cost}</TableCell>
             <TableCell align="right">{row.productionIn2021}</TableCell>
