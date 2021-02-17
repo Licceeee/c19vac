@@ -14,3 +14,29 @@ body {
 code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+
+.privacy:hover {
+    transform: scale(1.5);
+}
+
+.alicia:hover {
+    transform: scale(1.5);
+}
+.reza:hover {
+    transform: scale(1.5);
+}
+.selma:hover {
+    transform: scale(1.5);
+}
+.facebook:hover {
+    transform: scale(1.5);
+}
+
+.twitter:hover {
+    transform: scale(1.5);
+}
+
+.instagram:hover {
+    transform: scale(1.5);
+}
