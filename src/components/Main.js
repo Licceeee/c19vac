@@ -4,7 +4,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header'
 import MyCard from './MyCard'
+import Heading from './Heading'
+
 import Container from '@material-ui/core/Container';
+
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -24,8 +27,8 @@ const Main = ({ vaccineTypes }) => {
             <Header />
 
             <Container maxWidth="lg">
-                <h2>Vaccine Types</h2>
-
+                
+                <Heading text="Vaccine types" />
                 <div className={classes.root}>
                     <Grid container spacing={6}>
 
