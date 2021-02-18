@@ -11,11 +11,16 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles({
     table: {
         minWidth: 650,  
     },
+    boxClass: {
+        textAlign: 'left',
+        marginBottom: 20,
+    }
 });
 
 
@@ -37,56 +42,63 @@ const Details = ({ vaccines }) => {
         const vac = vaccines.find(element => element.sys.id === id);
         setVaccine(vac);
     }, [id]);
-    
-    console.log(vaccine);
-    
+        
     return (
         <>
         {vaccine ? 
             <div>
-                <Box fontSize='2rem'><h1>{vaccine.fields.name}</h1></Box>
-                <Box width="70%" mx="auto"><h3>{vaccine.fields.description}</h3></Box>
+                <Box width="70%" mx="auto" fontSize='2rem' textAlign="left"><h1>{vaccine.fields.name}</h1></Box>
+                <Box width="70%" mx="auto" textAlign="left" marginBottom="20px"><p>{vaccine.fields.description}</p></Box>
+
+                <Box width="70%" mx="auto" textAlign="left" marginBottom="20px"><h3>Benefits</h3></Box>
+                <Box width="70%" mx="auto" className={classes.boxClass}><p>{vaccine.fields.benefits}</p></Box>
+
+
+                <Box width="70%" mx="auto" textAlign="left" marginBottom="20px"><h3>Challenges</h3></Box>
+                <Box width="70%" mx="auto" className={classes.boxClass}><p>{vaccine.fields.challenges}</p></Box>
                 <br/>
-                <Box width="75%" mx="auto">
+
+
+                <Box width="70%" mx="auto">
                     <TableContainer component={Paper}>
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
-                                <TableRow>
-                                    <TableCell align="center">Name</TableCell>
-                                    <TableCell align="center">Number of doses required</TableCell>
-                                    <TableCell align="center">Benefits</TableCell>
-                                    <TableCell align="center">Challenges</TableCell>
-                                    <TableCell align="center">Other uses</TableCell>
+                                <TableRow textAlign="left">
+                                    <TableCell>Vaccines</TableCell>
+                                    <TableCell># doses required</TableCell>
+                                    <TableCell>Other uses</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                            <TableRow ><TableCell component="th" scope="row">{vaccine.fields.name}</TableCell>
-                                        <TableCell align="center">{vaccine.fields.numberOfDosesRequired}</TableCell>
-                                        <TableCell align="center">{vaccine.fields.benefits}</TableCell>
-                                        <TableCell align="center">{vaccine.fields.challenges}</TableCell>
-                                        <TableCell align="center">{vaccine.fields.otherUsesOfThisTechnology.map(disease=>disease + " ")}</TableCell>
-                                    </TableRow>
-                                {/* {rows.map((row) => (
-                                    <TableRow key={row.name}>
-                                        <TableCell component="th" scope="row">
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right"></TableCell>
-                                        <TableCell align="right">{row.type}</TableCell>
-                                        <TableCell align="right">{row.cost}</TableCell>
-                                        <TableCell align="right">{row.productionIn2021}</TableCell>
-                                    </TableRow>
-                                ))} */}
+                                <TableRow >
+                                    <TableCell>{vaccine.fields.vaccines 
+                                                                    ? vaccine.fields.vaccines.map(
+                                                                        (vaccine, index) => {
+                                                                            return <p key={index}>{vaccine.fields.name}</p>})
+                                                                    : "/" }
+                                    </TableCell>
+                                    <TableCell>{vaccine.fields.numberOfDosesRequired}</TableCell>
+                                    <TableCell>{vaccine.fields.otherUsesOfThisTechnology 
+                                                                    ?  vaccine.fields.otherUsesOfThisTechnology.map(
+                                                                        (disease, index) => {
+                                                                            return <p key={index}>{disease}</p>}) 
+                                                                    : "/" }
+                                    </TableCell>
+                                </TableRow>
                             </TableBody>
                         </Table>
                     </TableContainer>
                 </Box>
             </div>
-            : <p>Can't fetch content</p>}
-
+            : <p>No data available</p>}
             <br/>
-            <Link to='/' ><button><div className="button"> Go back  </div> </button></Link>
             <br/>
+            <br/>
+            <Link to='/' >
+                <Button variant="contained" color="secondary">
+                    Go back
+                </Button>
+            </Link>
             <br/>
             <br/>
             <br/>

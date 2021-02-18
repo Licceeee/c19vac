@@ -6,10 +6,14 @@ import Nav from './components/Nav';
 import Footer from './components/Footer';
 import Main from './components/Main';
 import Details from './components/Details';
-import Statistics from './components/Statistics';
+import StatesStats from './components/StatesStats';
+import GlobalStatsUS from './components/GlobalStatsUS';
 import GlobalStats from './components/GlobalStats';
 import CountryStats from './components/CountryStats';
 import Container from '@material-ui/core/Container';
+
+
+
 
 function App() {
   const [data, setData] = useState();
@@ -50,21 +54,25 @@ function App() {
       <Nav />
 
 
-      
-
       <Switch>
 
         <Route exact path="/">
 
           <Main vaccineTypes={vaccineTypes}/>
           <Container maxWidth="lg" id="statistics" name="statistics">
-            {global ?
-              global && <>
-                            <GlobalStats {...global}/>
-                            <CountryStats data={global}/>
+            {global 
+              ?
+                global && <>
+                              <GlobalStats {...global}/>
+                              <CountryStats data={global}/>
+                          </>
+              : 
+                data && <>
+                            <GlobalStatsUS data={data}/>
+                            <StatesStats data={states}/>
                         </>
-                    : 
-              data && <Statistics data={data} states={states}/>
+
+                // data && <Statistics data={data} states={states}/>
             }
               
           </Container>

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
     heading: {
-        padding: 30,
+        padding: 50,
     }
 }));
 

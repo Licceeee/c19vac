@@ -25,7 +25,7 @@ const useStyles = makeStyles({
   }
 });
 
-const CountryStats = ({data}) => {
+const StatesStats = ({data}) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
@@ -39,40 +39,41 @@ const CountryStats = ({data}) => {
     setPage(0);
   };
 
+  data && console.log(data);
   return (
     <>
-    <Heading text="Country data" />
+    <Heading text="Sttate data" />
         <Paper className={classes.root}>
         <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">
             <TableHead>
                 <TableRow>
-                    <TableCell className={classes.tableBG}>Countries</TableCell>
-                    <TableCell className={classes.tableBG}>New Confirmed</TableCell>
-                    <TableCell className={classes.tableBG}>Total Confirmed</TableCell>
+                    <TableCell className={classes.tableBG}>States</TableCell>
+                    <TableCell className={classes.tableBG}>Total</TableCell>
+                    <TableCell className={classes.tableBG}>Positive</TableCell>
                     <TableCell className={classes.tableBG}>Total Recovered</TableCell>
                     <TableCell className={classes.tableBG}>Total Death</TableCell>
 
                 </TableRow>
             </TableHead>
             <TableBody>
-                {data && data.Countries.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((country) => {
+                {data && data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((state) => {
                 return (
-                    <TableRow hover role="checkbox" tabIndex={-1} key={country.ID}>
+                    <TableRow hover role="checkbox" tabIndex={-1} key={state.hash}>
                         <TableCell>
-                            {country.Country}
+                            {state.state}
                         </TableCell>
                         <TableCell>
-                            {country.NewConfirmed}
+                            {state.total}
                         </TableCell>
                         <TableCell>
-                            {country.TotalConfirmed}
+                            {state.positive}
                         </TableCell>
                         <TableCell>
-                            {country.TotalRecovered}
+                            {state.recovered}
                         </TableCell>
                         <TableCell>
-                            {country.TotalDeaths}
+                            {state.death}
                         </TableCell>
                 
                     </TableRow>
@@ -84,7 +85,7 @@ const CountryStats = ({data}) => {
         <TablePagination
             rowsPerPageOptions={[10, 25, 100]}
             component="div"
-            count={data.Countries.length}
+            count={data.length}
             rowsPerPage={rowsPerPage}
             page={page}
             onChangePage={handleChangePage}
@@ -95,4 +96,4 @@ const CountryStats = ({data}) => {
   );
 }
 
-export default CountryStats;
+export default StatesStats;

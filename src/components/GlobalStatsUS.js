@@ -19,7 +19,7 @@ const useStyles = makeStyles({
 }
 });
 
-const GlobalStats = ({Global}) => {
+const GlobalStatsUS = ({data}) => {
   const classes = useStyles();
 
   return (
@@ -31,16 +31,16 @@ const GlobalStats = ({Global}) => {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell className={classes.tableBG}>Total Infected</TableCell>
-            <TableCell className={classes.tableBG}>Total Recovered</TableCell>
+          <TableCell className={classes.tableBG}>Total Infected</TableCell>
+            <TableCell className={classes.tableBG}>Currently hospitalized</TableCell>
             <TableCell className={classes.tableBG}>Total Death</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
             <TableRow>
-              <TableCell>{Global.TotalConfirmed}</TableCell>
-              <TableCell>{Global.TotalRecovered}</TableCell>
-              <TableCell>{Global.TotalDeaths}</TableCell>
+              <TableCell>{data.positive}</TableCell>
+              <TableCell>{data.hospitalized}</TableCell>
+              <TableCell>{data.death}</TableCell>
             </TableRow>
         </TableBody>
       </Table>
@@ -49,4 +49,4 @@ const GlobalStats = ({Global}) => {
   );
 }
 
-export default GlobalStats;
+export default GlobalStatsUS;
