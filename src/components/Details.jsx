@@ -1,6 +1,7 @@
 import React, {useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link, useParams } from "react-router-dom";
+import "./Details.css";
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -17,32 +18,18 @@ const useStyles = makeStyles({
     },
 });
 
-function createData(name, effectiveness, type, cost, productionIn2021) {
-    return { name, effectiveness, type, cost, productionIn2021};
-}   
 
-const rows = [
-    createData('PFIZER-BIONTECH', "95%", 'mRNA-based', '$20', '1.3 billion doses'),
-    createData('MODERNA', "94,10%", 'mRNA-based', "$15-25", '1 billion doses'),
-    createData('ASTRAZENECA-OXFORD', "70%", 'adenovirus vector', '$4', '3 billion doses'),
-    createData('X', 0, 0, 0, 0),
-    createData('Y', 0, 0, 0, 0),
-];
-
-const defaultProps = {
-    bgcolor: 'background.paper',
-    border: 1,
-    m: 1,
-    borderColor: 'text.primary',
-    style: { width: '5rem', height: '5rem' },
-};
+// const defaultProps = {
+//     bgcolor: 'background.paper',
+//     border: 1,
+//     m: 1,
+//     borderColor: 'text.primary',
+//     style: { width: '5rem', height: '5rem' },
+// };
 
 const Details = ({ vaccines }) => {
-
     const classes = useStyles();
-
     const [vaccine, setVaccine] = useState();
-    
     const { id } = useParams();
     
 
@@ -51,49 +38,59 @@ const Details = ({ vaccines }) => {
         setVaccine(vac);
     }, [id]);
     
-
+    console.log(vaccine);
+    
     return (
-        <div>
-            <h1>{vaccine && vaccine.fields.name}</h1>
-            <h3>Companies that r producing it + description</h3>
-            <Box border={10} borderRadius={15} borderColor="text.disabled" width="75%" mx="auto">
-                <TableContainer component={Paper}>
-                    <Table className={classes.table} aria-label="simple table">
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Vaccine name</TableCell>
-                                <TableCell align="right">Effectiveness</TableCell>
-                                <TableCell align="right">Type</TableCell>
-                                <TableCell align="right">Cost per dose</TableCell>
-                                <TableCell align="right">Predicted production in 2021</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {rows.map((row) => (
-                                <TableRow key={row.name}>
-                                    <TableCell component="th" scope="row">
-                                        {row.name}
-                                    </TableCell>
-                                    <TableCell align="right"></TableCell>
-                                    <TableCell align="right">{row.type}</TableCell>
-                                    <TableCell align="right">{row.cost}</TableCell>
-                                    <TableCell align="right">{row.productionIn2021}</TableCell>
+        <>
+        {vaccine ? 
+            <div>
+                <Box fontSize='2rem'><h1>{vaccine.fields.name}</h1></Box>
+                <Box width="70%" mx="auto"><h3>{vaccine.fields.description}</h3></Box>
+                <br/>
+                <Box width="75%" mx="auto">
+                    <TableContainer component={Paper}>
+                        <Table className={classes.table} aria-label="simple table">
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell align="center">Name</TableCell>
+                                    <TableCell align="center">Number of doses required</TableCell>
+                                    <TableCell align="center">Benefits</TableCell>
+                                    <TableCell align="center">Challenges</TableCell>
+                                    <TableCell align="center">Other uses</TableCell>
                                 </TableRow>
-                            ))}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </Box>
+                            </TableHead>
+                            <TableBody>
+                            <TableRow ><TableCell component="th" scope="row">{vaccine.fields.name}</TableCell>
+                                        <TableCell align="center">{vaccine.fields.numberOfDosesRequired}</TableCell>
+                                        <TableCell align="center">{vaccine.fields.benefits}</TableCell>
+                                        <TableCell align="center">{vaccine.fields.challenges}</TableCell>
+                                        <TableCell align="center">{vaccine.fields.otherUsesOfThisTechnology.map(disease=>disease + " ")}</TableCell>
+                                    </TableRow>
+                                {/* {rows.map((row) => (
+                                    <TableRow key={row.name}>
+                                        <TableCell component="th" scope="row">
+                                            {row.name}
+                                        </TableCell>
+                                        <TableCell align="right"></TableCell>
+                                        <TableCell align="right">{row.type}</TableCell>
+                                        <TableCell align="right">{row.cost}</TableCell>
+                                        <TableCell align="right">{row.productionIn2021}</TableCell>
+                                    </TableRow>
+                                ))} */}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Box>
+            </div>
+            : <p>Can't fetch content</p>}
 
             <br/>
-
-            <Link to='/' ><button> Go back home </button></Link>
-            
+            <Link to='/' ><button><div className="button"> Go back  </div> </button></Link>
             <br/>
             <br/>
             <br/>
             <br/>
-        </div>
+        </>
     )
 }
 

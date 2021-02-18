@@ -43,7 +43,7 @@ const Statistics = ({ data }) => {
     return (
 
         <Container maxWidth="lg">
-            <h2>Glabal data</h2>
+            <h2>Global data</h2>
             <table>
                 <thead>
                 <tr>
