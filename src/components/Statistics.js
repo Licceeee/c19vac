@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import Container from '@material-ui/core/Container';
+import Heading from './Heading'
 
 const Statistics = ({data, states}) => {
 
@@ -9,8 +10,8 @@ const Statistics = ({data, states}) => {
 
     return (
 
-        <Container maxWidth="lg">
-            <h2>Glabal data</h2>
+        <Container maxWidth="lg" id="statistics" name="statistics">
+            <Heading text="Global data" />
             <table>
                 <thead>
                 <tr>
@@ -28,7 +29,7 @@ const Statistics = ({data, states}) => {
                 </tbody>       
             </table>
 
-            <h2>States data</h2>
+            <Heading text="States data" />
             <table>
                 <thead>
                 <tr>

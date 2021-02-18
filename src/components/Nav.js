@@ -99,7 +99,7 @@ export default function SearchAppBar() {
               News
             </Button>
             <Button variant="contained" color="primary">
-              Statistic
+              <a href="#statistics" className="href">Statistics</a>
             </Button>
           </div>
           <div className={classes.search}>

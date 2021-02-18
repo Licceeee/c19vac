@@ -7,7 +7,9 @@ import Footer from './components/Footer';
 import Main from './components/Main';
 import Details from './components/Details';
 import Statistics from './components/Statistics';
-import GlobalStatistics from './components/GlobalStatistics';
+import GlobalStats from './components/GlobalStats';
+import CountryStats from './components/CountryStats';
+import Container from '@material-ui/core/Container';
 
 function App() {
   const [data, setData] = useState();
@@ -46,19 +48,32 @@ function App() {
   return (
     <div className="App">
       <Nav />
+
+
+      
+
       <Switch>
 
-      <Route exact path="/">
+        <Route exact path="/">
+
           <Main vaccineTypes={vaccineTypes}/>
-          {global ? global && <GlobalStatistics data={global}/>
-            : data && <Statistics data={data} states={states}/>}
+          <Container maxWidth="lg" id="statistics" name="statistics">
+            {global ?
+              global && <>
+                            <GlobalStats {...global}/>
+                            <CountryStats data={global}/>
+                        </>
+                    : 
+              data && <Statistics data={data} states={states}/>
+            }
+              
+          </Container>
+        </Route>
 
-      </Route>
 
-
-      <Route path="/:id">
-          {vaccineTypes && <Details vaccines={vaccineTypes}/>}
-      </Route>
+        <Route path="/:id">
+            {vaccineTypes && <Details vaccines={vaccineTypes}/>}
+        </Route>
 
       </Switch>
 
