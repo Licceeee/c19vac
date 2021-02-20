@@ -11,7 +11,7 @@ import GlobalStatsUS from './components/GlobalStatsUS';
 import GlobalStats from './components/GlobalStats';
 import CountryStats from './components/CountryStats';
 import Container from '@material-ui/core/Container';
-
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 
 
@@ -48,11 +48,16 @@ function App() {
     .then(result => {setGlobal(result)})
   }, []);
 
+  const theme = createMuiTheme({
+    palette: {
+      type: "dark"
+    }
+  });
 
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
       <Nav />
-
 
       <Switch>
 
@@ -86,9 +91,10 @@ function App() {
       </Switch>
 
       {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
-     
+            
       <Footer />
     </div>
+    </ThemeProvider>
   );
 }
 
