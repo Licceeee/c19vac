@@ -41,7 +41,7 @@ const CountryStats = ({data}) => {
 
   return (
     <>
-    <Heading text="Country data" />
+    <Heading text="Country stats" />
         <Paper className={classes.root}>
         <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">

@@ -42,7 +42,7 @@ const StatesStats = ({data}) => {
   data && console.log(data);
   return (
     <>
-    <Heading text="Sttate data" />
+    <Heading text="States data" />
         <Paper className={classes.root}>
         <TableContainer className={classes.container}>
             <Table stickyHeader aria-label="sticky table">

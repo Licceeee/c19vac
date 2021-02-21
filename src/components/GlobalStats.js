@@ -16,7 +16,11 @@ const useStyles = makeStyles({
   tableBG: {
     backgroundColor: '#3649A5',
     color: '#fff',
-}
+  },
+  cellBG: {
+    // backgroundColor: "#16191f",
+    // color: "#fff",
+  } 
 });
 
 const GlobalStats = ({Global}) => {
@@ -25,7 +29,7 @@ const GlobalStats = ({Global}) => {
   return (
 
     <>
-    <Heading text="Global data" id="statistics" name="statistics"/>
+    <Heading text="Global stats" id="statistics" name="statistics"/>
 
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -38,9 +42,9 @@ const GlobalStats = ({Global}) => {
         </TableHead>
         <TableBody>
             <TableRow>
-              <TableCell>{Global.TotalConfirmed}</TableCell>
-              <TableCell>{Global.TotalRecovered}</TableCell>
-              <TableCell>{Global.TotalDeaths}</TableCell>
+              <TableCell className={classes.cellBG}>{Global.TotalConfirmed}</TableCell>
+              <TableCell className={classes.cellBG}>{Global.TotalRecovered}</TableCell>
+              <TableCell className={classes.cellBG}>{Global.TotalDeaths}</TableCell>
             </TableRow>
         </TableBody>
       </Table>

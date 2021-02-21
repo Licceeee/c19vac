@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 
 
 const useStyles = makeStyles((theme) => ({
+
     paper: {
         padding: theme.spacing(2),
         textAlign: 'center',
@@ -18,6 +19,8 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'space-between',
         alignItems: 'stretch',
         alignContent: 'center',
+        // backgroundColor: '#16191f',
+        // color: '#fff'
         
       },
       link: {
@@ -38,8 +41,8 @@ const MyCard = ({ fields, id }) => {
 
     return (
         <>
-            <Grid item xs={3}>
-                <Paper className={classes.paper} elevation={0}>
+            <Grid item xs={12} sm={6} md={3} className={classes.root}>
+                <Paper className={classes.paper} elevation={3}>
                     
                         <h3 className={classes.heading}>{ name }</h3>
                         <h4>

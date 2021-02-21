@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundColor: '#f9f9f9',
-        backgroundImage: "url(https://media.discordapp.net/attachments/811977643661459496/811979654311051264/unknown.png)"
+        backgroundImage: "url(https://media.discordapp.net/attachments/811977643661459496/812243076043112448/virus.jpg?width=2340&height=1316)"
     },
     title: {
         color: '#282c34',

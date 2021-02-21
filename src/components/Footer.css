@@ -60,3 +60,7 @@ a:active {
     color: rgb(233, 240, 132);
     text-decoration: none;
 }
+
+.resize-on-hover:hover {
+    transform: scale(1.5);
+}

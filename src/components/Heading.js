@@ -14,7 +14,7 @@ const Heading = ( {text} ) => {
     const classes = useStyles();
 
     return (
-        <h2 className={classes.heading}>{text}</h2>
+        <h1 className={classes.heading}>{text}</h1>
     );
 }
 
