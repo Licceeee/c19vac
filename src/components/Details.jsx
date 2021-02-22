@@ -22,6 +22,10 @@ const useStyles = makeStyles({
     boxClass: {
         textAlign: 'left',
         marginBottom: 20,
+    },
+    tableBG: {
+        backgroundColor: '#3649A5',
+        color: '#fff',
     }
 });
 
@@ -66,9 +70,9 @@ const Details = ({ vaccines }) => {
                         <Table className={classes.table} aria-label="simple table">
                             <TableHead>
                                 <TableRow >
-                                    <TableCell>Vaccines</TableCell>
-                                    <TableCell># doses required</TableCell>
-                                    <TableCell>Other uses</TableCell>
+                                    <TableCell className={classes.tableBG}>Vaccines</TableCell>
+                                    <TableCell className={classes.tableBG}># doses required</TableCell>
+                                    <TableCell className={classes.tableBG}>Other uses</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
