@@ -49,10 +49,15 @@ function App() {
 
 
   useEffect(() => {
-    // global data <3
+    // global data :heart:
     getApiData("https://api.covid19api.com/summary")
-    .then(result => {setGlobal(result)})
+    .then(result => {
+      result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+      setGlobal(result);
+    })
   }, []);
+
+  states && console.log(states);
 
   const theme = createMuiTheme({
     palette: {
@@ -105,3 +110,11 @@ function App() {
 }
 
 export default App;
+
+
+
+  // useEffect(() => {
+  //   // global data <3
+  //   getApiData("https://api.covid19api.com/summary")
+  //   .then(result => {setGlobal(result)})
+  // }, []);
