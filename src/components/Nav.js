@@ -10,6 +10,10 @@ import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { AdbRounded } from '@material-ui/icons';
 import Switch from '@material-ui/core/Switch';
+import logo from '../media/logo2.gif'
+import { Link } from "react-router-dom";
+import { HashLink } from 'react-router-hash-link';
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -79,6 +83,7 @@ export default function SearchAppBar({ darkMode, setDarkMode}) {
   const classes = useStyles();
 
   return (
+    
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
@@ -91,15 +96,14 @@ export default function SearchAppBar({ darkMode, setDarkMode}) {
           <MenuIcon />
           </IconButton>     
           <div className={classes.navButton}>
-            <Button variant="contained" color="primary">
-              About
-            </Button>
-            <Button variant="contained" color="primary">
-              News
-            </Button>
-            <Button variant="contained" color="primary">
-              <a href="#statistics" className="href">Statistics</a>
-            </Button>
+            <Link to="/">
+              <img src={logo} className="logo" alt="logo"/>
+            </Link>
+            
+              <Button variant="contained" color="primary">
+                <HashLink to="/#statistics">Statistics </HashLink>
+              </Button>
+  
           </div>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
