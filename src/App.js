@@ -95,7 +95,7 @@ function App() {
         </Route>
 
 
-        <Route path="/:id">
+        <Route exact path="/:id">
             {vaccineTypes && <Details vaccines={vaccineTypes}/>}
         </Route>
 
