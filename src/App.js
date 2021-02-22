@@ -14,12 +14,12 @@ import Container from '@material-ui/core/Container';
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
 
-
 function App() {
   const [data, setData] = useState();
   const [vaccineTypes, setVaccineTypes] = useState([]);
   const [states, setStates] = useState([]);
   const [global, setGlobal] = useState();
+  const [darkMode, setDarkMode] = useState(true);
 
   // TODO conditional fetching https://api.covid19api.com/summary
 
@@ -50,14 +50,14 @@ function App() {
 
   const theme = createMuiTheme({
     palette: {
-      type: "dark"
+      type: darkMode ? "dark" : "light"
     }
   });
 
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
-      <Nav />
+      <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <Switch>
 

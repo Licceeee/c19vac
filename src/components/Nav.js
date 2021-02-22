@@ -9,6 +9,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
 import Button from '@material-ui/core/Button';
 import { AdbRounded } from '@material-ui/icons';
+import Switch from '@material-ui/core/Switch';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,7 +75,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SearchAppBar() {
+export default function SearchAppBar({ darkMode, setDarkMode}) {
   const classes = useStyles();
 
   return (
@@ -87,10 +88,8 @@ export default function SearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon />
-          </IconButton>
-         
-          
+          <MenuIcon />
+          </IconButton>     
           <div className={classes.navButton}>
             <Button variant="contained" color="primary">
               About
@@ -115,6 +114,9 @@ export default function SearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+          <Switch
+            checked={darkMode}
+            onChange={() => setDarkMode(!darkMode)} /> 
         </Toolbar>
       </AppBar>
     </div>
