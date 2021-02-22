@@ -14,7 +14,7 @@ const getContentfulData = (filter) => {
             }
         ).then(response =>  response.items);
     } catch (error) {
-        console.log(error);
+        console.log(`määh - could not connect: ${error}`);
     }
 }
 

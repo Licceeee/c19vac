@@ -1,0 +1,27 @@
+name: Deploy to GitHub Pages
+on:
+  push:
+    branches:
+        - master
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Build
+      run: |
+        npm install
+        npm run-script build
+      env:
+        REACT_APP_SPACE_ID: ${{ secrets.REACT_APP_SPACE_ID }}
+        REACT_APP_ACCESS_TOKEN: ${{ secrets.REACT_APP_ACCESS_TOKEN }}
+
+    - name: Deploy
+      uses: JamesIves/github-pages-deploy-action@releases/v4
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        BRANCH: gh-pages
+        FOLDER: build
+
