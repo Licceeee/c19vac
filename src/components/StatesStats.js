@@ -39,7 +39,7 @@ const StatesStats = ({data}) => {
     setPage(0);
   };
 
-  data && console.log(data);
+
   return (
     <>
     <Heading text="States data" />

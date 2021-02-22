@@ -13,11 +13,19 @@ import Switch from '@material-ui/core/Switch';
 import logo from '../media/logo2.gif'
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
+import Container from '@material-ui/core/Container';
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
+
+      display: 'flex',
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      alignContent: 'center',
+    
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -79,13 +87,24 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function SearchAppBar({ darkMode, setDarkMode}) {
+export default function SearchAppBar({ darkMode, setDarkMode, userSearch, handleInput, userSearchTyping}) {
   const classes = useStyles();
+
+  const _handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleInput(userSearch);
+      }
+}
 
   return (
     
+
+
     <div className={classes.root}>
+
+
       <AppBar position="static">
+      <Container maxWidth="lg">
         <Toolbar>
           <IconButton
             edge="start"
@@ -93,23 +112,20 @@ export default function SearchAppBar({ darkMode, setDarkMode}) {
             color="inherit"
             aria-label="open drawer"
           >
-          <MenuIcon />
-          </IconButton>     
-          <div className={classes.navButton}>
             <Link to="/">
               <img src={logo} className="logo" alt="logo"/>
             </Link>
-            
-              <Button variant="contained" color="primary">
-                <HashLink to="/#statistics">Statistics </HashLink>
-              </Button>
-  
-          </div>
+          </IconButton>   
+
+
+          <div className={classes.navButton}>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
             <InputBase
+            // onChange={handleInput}
+            // value={userSearchTyping}
               placeholder="Search…"
               classes={{
                 root: classes.inputRoot,
@@ -118,12 +134,28 @@ export default function SearchAppBar({ darkMode, setDarkMode}) {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
+</div>
+
+          {/* <div className={classes.navButton}>
+     
+              <Button variant="contained" color="primary">
+                <HashLink to="/#statistics">Statistics </HashLink>
+              </Button>
+  
+          </div> */}
+
+
+
+          
           <Switch
             checked={darkMode}
             onChange={() => setDarkMode(!darkMode)} /> 
         </Toolbar>
+        </Container>
       </AppBar>
+
     </div>
+
   );
 }
 

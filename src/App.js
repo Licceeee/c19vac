@@ -22,6 +22,7 @@ function App() {
   const [states, setStates] = useState([]);
   const [global, setGlobal] = useState();
   const [darkMode, setDarkMode] = useState(true);
+  const [userSearch, setUserSearch] = useState("");
 
   // TODO conditional fetching https://api.covid19api.com/summary
 
@@ -43,21 +44,38 @@ function App() {
 
   useEffect(() => {
     // data by states
-    getApiData("https://api.covidtracking.com/v1/states/current.json")
-    .then(result => {setStates(result)})
+    // userSearch ?
+
+    //          https://api.covidtracking.com/v1/states/ca/current.json
+    getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
+    .then(result => {
+      console.log(result);
+      setStates(result);
+    })
   }, []);
 
 
   useEffect(() => {
+    let url = ""
+    userSearch 
+      ?  url = `https://api.covid19api.com/country${userSearch}/status/confirmed`
+      : url = "https://api.covid19api.com/summary"
     // global data :heart:
-    getApiData("https://api.covid19api.com/summary")
+    //          https://api.covid19api.com/country${userSearch}/status/confirmed
+    getApiData(url)
     .then(result => {
-      result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+      // result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
       setGlobal(result);
     })
   }, []);
 
-  states && console.log(states);
+
+
+  const handleInput = ({ target }) => {
+    console.log(target.value);
+    setUserSearch(target.value);
+  }
+
 
   const theme = createMuiTheme({
     palette: {
@@ -68,7 +86,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
-      <Nav darkMode={darkMode} setDarkMode={setDarkMode} />
+    <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode}/>
 
       <Switch>
 
