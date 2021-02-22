@@ -56,15 +56,15 @@ function App() {
 
 
   useEffect(() => {
-    let url = ""
-    userSearch 
-      ?  url = `https://api.covid19api.com/country${userSearch}/status/confirmed`
-      : url = "https://api.covid19api.com/summary"
+    let url = "https://api.covid19api.com/summary"
+    // TODO userSearch 
+    //   ?  url = `https://api.covid19api.com/country${userSearch}/status/confirmed`
+    //   : url = 
     // global data :heart:
     //          https://api.covid19api.com/country${userSearch}/status/confirmed
     getApiData(url)
     .then(result => {
-      // result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+      result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
       setGlobal(result);
     })
   }, []);
