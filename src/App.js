@@ -49,7 +49,6 @@ function App() {
     //          https://api.covidtracking.com/v1/states/ca/current.json
     getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
     .then(result => {
-      console.log(result);
       setStates(result);
     })
   }, []);
@@ -67,6 +66,20 @@ function App() {
       result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
       setGlobal(result);
     })
+  }, []);
+
+
+
+  useEffect(() => {
+    // own express server api
+      try {
+        return fetch("http://localhost:9000/API")
+              .then(response => response.json())
+              .then(jsonRes => console.log(jsonRes))
+
+    } catch (error) {
+        console.log(error);
+    } 
   }, []);
 
 
