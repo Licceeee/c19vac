@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import './App.css';
-import { getContentfulData, getApiData } from './Api'
+import { getApiData } from './Api'
 import { Switch, Route } from "react-router-dom";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -23,16 +23,17 @@ function App() {
   const [global, setGlobal] = useState();
   const [darkMode, setDarkMode] = useState(true);
   const [userSearch, setUserSearch] = useState("");
+  const [loading, setLoading] = useState(true)
 
-  // TODO conditional fetching https://api.covid19api.com/summary
+
 
   useEffect(() => {
-    try {
-      getContentfulData("vaccineType").then(result => setVaccineTypes(result));
-    } catch(error) {
-      console.log(`connection problem: ${error}`);
-
-    }
+    // GET DATA FROM DB
+    getApiData("http://localhost:9000/api/v1/vaccine_types")
+    .then(result => {
+      setLoading(false);
+      setVaccineTypes(result);
+    })
   }, []);
 
 
@@ -44,9 +45,6 @@ function App() {
 
   useEffect(() => {
     // data by states
-    // userSearch ?
-
-    //          https://api.covidtracking.com/v1/states/ca/current.json
     getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
     .then(result => {
       setStates(result);
@@ -67,21 +65,6 @@ function App() {
       setGlobal(result);
     })
   }, []);
-
-
-
-  useEffect(() => {
-    // own express server api
-      try {
-        return fetch("http://localhost:9000/API")
-              .then(response => response.json())
-              .then(jsonRes => console.log(jsonRes))
-
-    } catch (error) {
-        console.log(error);
-    } 
-  }, []);
-
 
 
   const handleInput = ({ target }) => {
@@ -105,7 +88,7 @@ function App() {
 
         <Route exact path="/">
 
-          {vaccineTypes && <Main vaccineTypes={vaccineTypes}/>}
+          {vaccineTypes && <Main vaccineTypes={vaccineTypes} loading={loading}/>}
           <Container maxWidth="lg" id="statistics" name="statistics">
             {global 
               ?
@@ -127,7 +110,7 @@ function App() {
 
 
         <Route exact path="/:id">
-            {vaccineTypes && <Details vaccines={vaccineTypes}/>}
+            {vaccineTypes && <Details loading={loading} setLoading={setLoading}/>}
         </Route>
 
       </Switch>

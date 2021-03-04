@@ -12,19 +12,6 @@ import Container from '@material-ui/core/Container';
 import Heading from './Heading'
 
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-  },
-  container: {
-    maxHeight: 440,
-  },
-  tableBG: {
-      backgroundColor: '#3649A5',
-      color: '#fff',
-  }
-});
-
 const StatesStats = ({data}) => {
   const classes = useStyles();
   const [page, setPage] = React.useState(0);
@@ -97,3 +84,17 @@ const StatesStats = ({data}) => {
 }
 
 export default StatesStats;
+
+
+const useStyles = makeStyles({
+    root: {
+      width: '100%',
+    },
+    container: {
+      maxHeight: 440,
+    },
+    tableBG: {
+        backgroundColor: '#3649A5',
+        color: '#fff',
+    }
+  });
