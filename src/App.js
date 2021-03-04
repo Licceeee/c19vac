@@ -26,7 +26,6 @@ function App() {
   const [loading, setLoading] = useState(true)
 
 
-
   useEffect(() => {
     // GET DATA FROM DB
     getApiData("http://localhost:9000/api/v1/vaccine_types")
@@ -82,7 +81,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
     <div className="App">
-    <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode}/>
+    <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode} />
 
       <Switch>
 
