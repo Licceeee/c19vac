@@ -13,7 +13,6 @@ import Container from '@material-ui/core/Container';
 const Main = ({ vaccineTypes, loading }) => {
 
     const classes = useStyles();
-    console.log(loading)
 
     return (
         <>

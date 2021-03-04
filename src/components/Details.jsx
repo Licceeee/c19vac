@@ -19,6 +19,7 @@ const Details = ({ loading, setLoading }) => {
 
     const classes = useStyles();
     const [vaccine, setVaccine] = useState();
+    const [vaccines, setVaccines] = useState();
     const { id } = useParams();
     
 
@@ -27,11 +28,12 @@ const Details = ({ loading, setLoading }) => {
         getApiData(`http://localhost:9000/api/v1/vaccine_types/${id}`)
         .then(result => {
           setLoading(false);
-          setVaccine(result[0]);
+          setVaccine(result.vaccineType);
+          setVaccines(result.relatedVaccines);
         })
       }, [id]);
 
-      vaccine && console.log(vaccine)
+      vaccine && console.log(vaccines)
 
     return (
         <>
@@ -74,17 +76,17 @@ const Details = ({ loading, setLoading }) => {
                                 <TableBody>
                                     <TableRow >
                                         <TableCell>
-                                                    {/* {vaccine.fields.vaccines 
-                                                        ? vaccine.fields.vaccines.map(
-                                                            (vaccine, index) => {
-                                                                return <p key={index}>{vaccine.fields.name}</p>})
+                                                    {vaccines 
+                                                        ? vaccines.map(
+                                                            (vaccine) => {
+                                                                return <p key={vaccine.id}>{vaccine.name}</p>})
                                                         : "/" 
-                                                    } */}
+                                                    }
                                         </TableCell>
                                         <TableCell>{vaccine.numberofdosesrequired}</TableCell>
                                         <TableCell>
-                                                    {/* {vaccine.fields.otherUsesOfThisTechnology 
-                                                        ?  vaccine.fields.otherUsesOfThisTechnology.map(
+                                                    {/* {vaccine.otherUsesOfThisTechnology 
+                                                        ?  vaccine.otherUsesOfThisTechnology.map(
                                                             (disease, index) => {
                                                                 return <p key={index}>{disease}</p>}) 
                                                         : "/" 
