@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     // GET DATA FROM DB
-    getApiData("http://localhost:9000/api/v1/vaccine_types")
+    getApiData("https://obscure-wildwood-82348.herokuapp.com/api/v1/vaccine_types")
     .then(result => {
       setLoading(false);
       setVaccineTypes(result);
