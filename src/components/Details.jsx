@@ -20,6 +20,8 @@ const Details = ({ loading, setLoading }) => {
     const classes = useStyles();
     const [vaccine, setVaccine] = useState();
     const [vaccines, setVaccines] = useState();
+    const [otherUses, setOtherUses] = useState();
+
     const { id } = useParams();
     
 
@@ -30,6 +32,7 @@ const Details = ({ loading, setLoading }) => {
           setLoading(false);
           setVaccine(result.vaccineType);
           setVaccines(result.relatedVaccines);
+          setOtherUses(result.otherUses);
         })
       }, [id]);
 
@@ -85,12 +88,12 @@ const Details = ({ loading, setLoading }) => {
                                         </TableCell>
                                         <TableCell>{vaccine.numberofdosesrequired}</TableCell>
                                         <TableCell>
-                                                    {/* {vaccine.otherUsesOfThisTechnology 
-                                                        ?  vaccine.otherUsesOfThisTechnology.map(
-                                                            (disease, index) => {
-                                                                return <p key={index}>{disease}</p>}) 
+                                                    {otherUses 
+                                                        ? otherUses.map(
+                                                            (use) => {
+                                                                return <p key={use.id}>{use.name}</p>})
                                                         : "/" 
-                                                    } */}
+                                                    }
                                         </TableCell>
                                     </TableRow>
                                 </TableBody>
