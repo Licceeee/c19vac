@@ -13,18 +13,6 @@ import Heading from './Heading'
 
 
 
-const useStyles = makeStyles({
-    root: {
-        width: '100%',
-    },
-    container: {
-        maxHeight: 440,
-    },
-    tableBG: {
-        backgroundColor: '#3649A5',
-        color: '#fff',
-    }
-});
 
 const StatesStats = ({ data }) => {
     const classes = useStyles();
@@ -113,3 +101,5 @@ const useStyles = makeStyles({
         color: '#fff',
     }
   });
+
+  

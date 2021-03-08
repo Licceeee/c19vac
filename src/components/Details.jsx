@@ -125,10 +125,8 @@ const Details = ({ loading, setLoading }) => {
         <br/>
         <br/>
         <br/>
-        <Link to='/' >
-            <Button variant="contained" color="secondary">
-                Go back
-            </Button>
+        <Link to='/' className="custom-box-link">
+            <a href="#">Back</a>
         </Link>
         <br/>
         <br/>

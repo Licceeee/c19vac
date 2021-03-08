@@ -40,7 +40,7 @@ const Main = ({ vaccineTypes, loading }) => {
                         <Grid container spacing={6}>
                             {vaccineTypes && vaccineTypes.map((vac) => {
 
-                            return <NewCard key={vac.sys.id} {...vac} id={vac.sys.id} />
+                            return <NewCard key={vac.id} {...vac} id={vac.id} />
 
 
                             })}

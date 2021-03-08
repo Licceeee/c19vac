@@ -1,12 +1,11 @@
 
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./NewCard.css";
 
 
-const NewCard = ({ fields, id }) => {
+const NewCard = ({ name, vaccines, id }) => {
 
-    const { name, vaccines } = fields;
     return (<>
         <div className="container" >
             <div className="card">
@@ -14,8 +13,17 @@ const NewCard = ({ fields, id }) => {
                     <div className="content">
                         <h3>{name}</h3>
                         <p>
-                            # vaccines: {vaccines ? vaccines.length : "0"}</p>
-                        <a href="#">Read More</a>
+                            # vaccines: {vaccines}</p>
+
+                            {/* <a href="#" className="custom-box-link">
+                                <Link to={`/${id}`}>
+                                    Read More</Link>
+                            </a> */}
+
+                            <Link to={`/${id}`} className="custom-box-link">
+                                <a href="#">Read More</a>
+                            </Link>
+
                     </div>
                 </div>
             </div>
