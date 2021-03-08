@@ -25,7 +25,7 @@ const Details = ({ loading, setLoading }) => {
 
     useEffect(() => {
         setLoading(true);
-        getApiData(`http://localhost:9000/api/v1/vaccine_types/${id}`)
+        getApiData(`https://obscure-wildwood-82348.herokuapp.com/api/v1/vaccine_types${id}`)
         .then(result => {
           setLoading(false);
           setVaccine(result.vaccineType);
