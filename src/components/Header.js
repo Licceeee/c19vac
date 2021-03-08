@@ -7,11 +7,11 @@ import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-      flexGrow: 1,
+        flexGrow: 1,
     },
     hero: {
         paddingBottom: theme.spacing(2),
-        minHeight: 300,
+        minHeight: 220,
         textAlign: 'center',
         color: theme.palette.text.secondary,
         backgroundSize: 'cover',
@@ -22,9 +22,9 @@ const useStyles = makeStyles((theme) => ({
     title: {
         color: '#282c34',
         fontSize: 32,
-        
+
     }
-  }));
+}));
 
 const Header = () => {
 
@@ -32,21 +32,21 @@ const Header = () => {
 
     return (
         <div className={classes.root}>
-            <div  spacing={5}>
+            <div spacing={5}>
 
-                    <Paper
-                        display="flex"
-                        alignitems="center"
-                        className={classes.hero}
-                        justifycontent="center"
-                        width="100vw"
-                    >
-                        {/* <Box className={classes.title}>
+                <Paper
+                    display="flex"
+                    alignitems="center"
+                    className={classes.hero}
+                    justifycontent="center"
+                    width="100vw"
+                >
+                    {/* <Box className={classes.title}>
                             
                         </Box> */}
-                    </Paper>
+                </Paper>
                 {/* </Paper> */}
-      
+
             </div>
         </div>
     );

@@ -12,6 +12,7 @@
         "@testing-library/react": "^11.2.5",
         "@testing-library/user-event": "^12.7.0",
         "contentful": "^8.1.7",
+        "express": "^4.17.1",
         "gh-pages": "^3.1.0",
         "material-ui-icons": "^1.0.0-beta.36",
         "react": "^17.0.1",
@@ -48,5 +49,8 @@
             "last 1 firefox version",
             "last 1 safari version"
         ]
+    },
+    "devDependencies": {
+        "css-loader": "^5.1.1"
     }
 }

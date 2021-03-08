@@ -3,8 +3,10 @@ import Details from "./Details";
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Header from './Header'
-import MyCard from './MyCard'
+// import MyCard from './MyCard'
+import NewCard from './NewCard';
 import Heading from './Heading'
+import Description from "./Description";
 
 import Container from '@material-ui/core/Container';
 
@@ -27,14 +29,17 @@ const Main = ({ vaccineTypes }) => {
             <Header />
 
             <Container maxWidth="lg">
-                
-                <Heading text="Vaccine types" />
+
+
+
+                <Description />
+                <Heading text=" Covid-19 Vaccine Types" />
                 <div className={classes.root}>
                     <Grid container spacing={6}>
 
                         {vaccineTypes && vaccineTypes.map((vac) => {
 
-                            return <MyCard key={vac.sys.id} {...vac} id={vac.sys.id}/>
+                            return <NewCard key={vac.sys.id} {...vac} id={vac.sys.id} />
 
                         })}
 

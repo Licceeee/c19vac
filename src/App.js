@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getContentfulData, getApiData } from './Api'
 import { Switch, Route } from "react-router-dom";
@@ -11,7 +11,9 @@ import GlobalStatsUS from './components/GlobalStatsUS';
 import GlobalStats from './components/GlobalStats';
 import CountryStats from './components/CountryStats';
 import Container from '@material-ui/core/Container';
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import BackgroundAni from "./components/BackgroundAni";
+
 
 import CsvDownload from "react-json-to-csv";
 
@@ -29,7 +31,7 @@ function App() {
   useEffect(() => {
     try {
       getContentfulData("vaccineType").then(result => setVaccineTypes(result));
-    } catch(error) {
+    } catch (error) {
       console.log(`connection problem: ${error}`);
 
     }
@@ -39,7 +41,7 @@ function App() {
   useEffect(() => {
     // global data
     getApiData("https://api.covidtracking.com/v1/us/current.json")
-    .then(result => {setData(result[0])})
+      .then(result => { setData(result[0]) })
   }, []);
 
   useEffect(() => {
@@ -48,9 +50,9 @@ function App() {
 
     //          https://api.covidtracking.com/v1/states/ca/current.json
     getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
-    .then(result => {
-      setStates(result);
-    })
+      .then(result => {
+        setStates(result);
+      })
   }, []);
 
 
@@ -62,24 +64,24 @@ function App() {
     // global data :heart:
     //          https://api.covid19api.com/country${userSearch}/status/confirmed
     getApiData(url)
-    .then(result => {
-      result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
-      setGlobal(result);
-    })
+      .then(result => {
+        result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+        setGlobal(result);
+      })
   }, []);
 
 
 
   useEffect(() => {
     // own express server api
-      try {
-        return fetch("http://localhost:9000/API")
-              .then(response => response.json())
-              .then(jsonRes => console.log(jsonRes))
+    try {
+      return fetch("http://localhost:9000/API")
+        .then(response => response.json())
+        .then(jsonRes => console.log(jsonRes))
 
     } catch (error) {
-        console.log(error);
-    } 
+      console.log(error);
+    }
   }, []);
 
 
@@ -98,44 +100,45 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    <div className="App">
-    <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode}/>
+      <div className="App">
+        <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <Switch>
+        <Switch>
 
-        <Route exact path="/">
+          <Route exact path="/">
 
-          {vaccineTypes && <Main vaccineTypes={vaccineTypes}/>}
-          <Container maxWidth="lg" id="statistics" name="statistics">
-            {global 
-              ?
+            {vaccineTypes && <Main vaccineTypes={vaccineTypes} />}
+            <Container maxWidth="lg" id="statistics" name="statistics">
+              {global
+                ?
                 global && <>
-                              <GlobalStats {...global}/>
-                              <CountryStats data={global}/>
-                          </>
-              : 
+                  <GlobalStats {...global} />
+                  <CountryStats data={global} />
+                </>
+                :
                 data && <>
-                            <GlobalStatsUS data={data}/>
-                            <StatesStats data={states}/>
-                        </>
+                  <GlobalStatsUS data={data} />
+                  <StatesStats data={states} />
+                </>
 
                 // data && <Statistics data={data} states={states}/>
-            }
-              
-          </Container>
-        </Route>
+              }
+
+            </Container>
+          </Route>
 
 
-        <Route exact path="/:id">
-            {vaccineTypes && <Details vaccines={vaccineTypes}/>}
-        </Route>
+          <Route exact path="/:id">
+            {vaccineTypes && <Details vaccines={vaccineTypes} />}
+          </Route>
 
-      </Switch>
+        </Switch>
+        <BackgroundAni />
 
-      {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
-            
-      <Footer />
-    </div>
+        {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
+
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }

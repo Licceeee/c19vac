@@ -14,18 +14,19 @@ import logo from '../media/logo2.gif'
 import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
 import Container from '@material-ui/core/Container';
+import Datetime from "./Datetime";
 
 
 const useStyles = makeStyles((theme) => ({
   root: {
 
-      display: 'flex',
-      flexDirection: 'row',
-      flexWrap: 'wrap',
-      justifyContent: 'space-between',
-      alignItems: 'center',
-      alignContent: 'center',
-    
+    display: 'flex',
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    alignContent: 'center',
+
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -47,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 0,
     width: '100%',
     [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
+      marginLeft: theme.spacing(-20),
       width: 'auto',
     },
   },
@@ -60,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  navButton : {
+  navButton: {
     display: "flex",
     flex: 1,
     justifyContent: "space-around",
@@ -82,61 +83,62 @@ const useStyles = makeStyles((theme) => ({
       },
     },
   },
-  
+
 }));
 
 
 
-export default function SearchAppBar({ darkMode, setDarkMode, userSearch, handleInput, userSearchTyping}) {
+export default function SearchAppBar({ darkMode, setDarkMode, userSearch, handleInput, userSearchTyping }) {
   const classes = useStyles();
 
   const _handleKeyDown = (e) => {
     if (e.key === 'Enter') {
       handleInput(userSearch);
-      }
-}
+    }
+  }
 
   return (
-    
+
 
 
     <div className={classes.root}>
 
 
       <AppBar position="static">
-      <Container maxWidth="lg">
-        <Toolbar>
-          <IconButton
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <Link to="/">
-              <img src={logo} className="logo" alt="logo"/>
-            </Link>
-          </IconButton>   
+        <Container maxWidth="lg">
+          <Toolbar>
+            <IconButton
+              edge="start"
+              className={classes.menuButton}
+              color="inherit"
+              aria-label="open drawer"
+            >
+              <Link to="/">
+                <img src={logo} className="logo" alt="logo" />
+              </Link>
+            </IconButton>
+            <Datetime />
 
 
-          <div className={classes.navButton}>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
+            <div className={classes.navButton}>
+              <div className={classes.search}>
+                <div className={classes.searchIcon}>
+                  <SearchIcon />
+                </div>
+                <InputBase
+                  // onChange={handleInput}
+                  // value={userSearchTyping}
+                  placeholder="Search…"
+                  classes={{
+                    root: classes.inputRoot,
+                    input: classes.inputInput,
+                  }}
+                  inputProps={{ 'aria-label': 'search' }}
+                />
+              </div>
             </div>
-            <InputBase
-            // onChange={handleInput}
-            // value={userSearchTyping}
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
-</div>
 
-          {/* <div className={classes.navButton}>
+            {/* <div className={classes.navButton}>
      
               <Button variant="contained" color="primary">
                 <HashLink to="/#statistics">Statistics </HashLink>
@@ -146,11 +148,11 @@ export default function SearchAppBar({ darkMode, setDarkMode, userSearch, handle
 
 
 
-          
-          <Switch
-            checked={darkMode}
-            onChange={() => setDarkMode(!darkMode)} /> 
-        </Toolbar>
+
+            <Switch
+              checked={darkMode}
+              onChange={() => setDarkMode(!darkMode)} />
+          </Toolbar>
         </Container>
       </AppBar>
 
