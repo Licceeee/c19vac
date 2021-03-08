@@ -6,4 +6,4 @@ const getApiData = (url) => {
     } 
 }
 
-export {getApiData };
+export { getApiData };

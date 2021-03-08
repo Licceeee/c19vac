@@ -14,6 +14,8 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Loading from './Loading'
 
+const path_dev = process.env.REACT_APP_DEV_SERVER_URL;
+const path_prod = process.env.REACT_APP_DEV_PROD_URL;
 
 const Details = ({ loading, setLoading }) => {
 
@@ -54,6 +56,7 @@ const Details = ({ loading, setLoading }) => {
 
                 
                 <div className={classes.boxClass}>
+
                     <Box width="70%" mx="auto" fontSize='2rem'><h1>{vaccine.name}</h1></Box>
                     <Box width="70%" mx="auto" marginBottom="20px"><p>{vaccine.description}</p></Box>
 
@@ -63,6 +66,20 @@ const Details = ({ loading, setLoading }) => {
 
                     <Box width="70%" mx="auto" marginBottom="20px"><h2>Challenges</h2></Box>
                     <Box width="70%" mx="auto" ><p>{vaccine.challenges}</p></Box>
+
+                    <Box width="70%" mx="auto" marginBottom="20px"><h2>Companies producing this type vaccine</h2></Box>
+                    <Box width="70%" mx="auto" display="flex">
+                    {vaccines && vaccines.map((vaccine) => {
+                                return (
+                                    <Box key={vaccine.id} marginRight="20px">
+                                        <h5>{vaccine.name}</h5>
+                                        <img src={`https://obscure-wildwood-82348.herokuapp.com/static/${vaccine.img}`} height="100"></img>
+                                    </Box>
+                                )})
+                        }
+                    
+                    </Box>
+
                     <br/>
 
 

@@ -13,7 +13,7 @@ import CountryStats from './components/CountryStats';
 import Container from '@material-ui/core/Container';
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
 
-import CsvDownload from "react-json-to-csv";
+
 
 function App() {
   const [data, setData] = useState();
@@ -123,11 +123,3 @@ function App() {
 }
 
 export default App;
-
-
-
-  // useEffect(() => {
-  //   // global data <3
-  //   getApiData("https://api.covid19api.com/summary")
-  //   .then(result => {setGlobal(result)})
-  // }, []);
