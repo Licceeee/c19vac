@@ -20,35 +20,35 @@ const useStyles = makeStyles({
   cellBG: {
     // backgroundColor: "#16191f",
     // color: "#fff",
-  } 
+  }
 });
 
-const GlobalStats = ({Global}) => {
+const GlobalStats = ({ Global }) => {
   const classes = useStyles();
 
   return (
 
     <>
-    <Heading text="Global stats" id="statistics" name="statistics"/>
+      <Heading text="Global Situation" id="statistics" name="statistics" />
 
-    <TableContainer component={Paper}>
-      <Table className={classes.table} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell className={classes.tableBG}>Total Infected</TableCell>
-            <TableCell className={classes.tableBG}>Total Recovered</TableCell>
-            <TableCell className={classes.tableBG}>Total Death</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
+      <TableContainer component={Paper}>
+        <Table className={classes.table} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell className={classes.tableBG}>Total Infected</TableCell>
+              <TableCell className={classes.tableBG}>Total Recovered</TableCell>
+              <TableCell className={classes.tableBG}>Total Death</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             <TableRow>
               <TableCell className={classes.cellBG}>{Global.TotalConfirmed}</TableCell>
               <TableCell className={classes.cellBG}>{Global.TotalRecovered}</TableCell>
               <TableCell className={classes.cellBG}>{Global.TotalDeaths}</TableCell>
             </TableRow>
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableBody>
+        </Table>
+      </TableContainer>
     </>
   );
 }

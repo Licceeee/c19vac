@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import { getApiData } from './Api'
 import { Switch, Route } from "react-router-dom";
@@ -11,7 +11,9 @@ import GlobalStatsUS from './components/GlobalStatsUS';
 import GlobalStats from './components/GlobalStats';
 import CountryStats from './components/CountryStats';
 import Container from '@material-ui/core/Container';
-import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles"
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import BackgroundAni from "./components/BackgroundAni";
+
 
 
 
@@ -27,27 +29,28 @@ function App() {
 
 
   useEffect(() => {
-    // GET DATA FROM DB
+
     getApiData("https://obscure-wildwood-82348.herokuapp.com/api/v1/vaccine_types")
     .then(result => {
       setLoading(false);
       setVaccineTypes(result);
     })
+
   }, []);
 
 
   useEffect(() => {
     // global data
     getApiData("https://api.covidtracking.com/v1/us/current.json")
-    .then(result => {setData(result[0])})
+      .then(result => { setData(result[0]) })
   }, []);
 
   useEffect(() => {
     // data by states
     getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
-    .then(result => {
-      setStates(result);
-    })
+      .then(result => {
+        setStates(result);
+      })
   }, []);
 
 
@@ -59,11 +62,12 @@ function App() {
     // global data :heart:
     //          https://api.covid19api.com/country${userSearch}/status/confirmed
     getApiData(url)
-    .then(result => {
-      result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
-      setGlobal(result);
-    })
+      .then(result => {
+        result.Countries.sort((a, b) => b.TotalDeaths - a.TotalDeaths);
+        setGlobal(result);
+      })
   }, []);
+
 
 
   const handleInput = ({ target }) => {
@@ -80,32 +84,35 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-    <div className="App">
-    <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode} />
 
-      <Switch>
+      <div className="App">
+        <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode} />
 
-        <Route exact path="/">
+        <Switch>
 
-          {vaccineTypes && <Main vaccineTypes={vaccineTypes} loading={loading}/>}
-          <Container maxWidth="lg" id="statistics" name="statistics">
-            {global 
-              ?
-                global && <>
-                              <GlobalStats {...global}/>
-                              <CountryStats data={global}/>
-                          </>
-              : 
-                data && <>
-                            <GlobalStatsUS data={data}/>
-                            <StatesStats data={states}/>
-                        </>
+          <Route exact path="/">
 
-                // data && <Statistics data={data} states={states}/>
-            }
-              
-          </Container>
-        </Route>
+
+            {vaccineTypes && <Main vaccineTypes={vaccineTypes} loading={loading}/>}
+            <Container maxWidth="lg" id="statistics" name="statistics">
+              {global 
+                ?
+
+                  global && <>
+                    <GlobalStats {...global} />
+                    <CountryStats data={global} />
+                  </>
+                  :
+                  data && <>
+                    <GlobalStatsUS data={data} />
+                    <StatesStats data={states} />
+                  </>
+
+                  // data && <Statistics data={data} states={states}/>
+                }
+
+              </Container>
+            </Route>
 
 
         <Route exact path="/:id">
@@ -113,11 +120,13 @@ function App() {
         </Route>
 
       </Switch>
+    
+      <BackgroundAni />
 
-      {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
-            
-      <Footer />
-    </div>
+        {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
+
+        <Footer />
+      </div>
     </ThemeProvider>
   );
 }
