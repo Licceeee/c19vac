@@ -30,8 +30,10 @@ const Header = () => {
 
     const classes = useStyles();
 
+    const date = Date.now();
     return (
         <div className={classes.root}>
+
             <div spacing={5}>
 
                 <Paper
@@ -40,13 +42,7 @@ const Header = () => {
                     className={classes.hero}
                     justifycontent="center"
                     width="100vw"
-                >
-                    {/* <Box className={classes.title}>
-                            
-                        </Box> */}
-                </Paper>
-                {/* </Paper> */}
-
+                />
             </div>
         </div>
     );

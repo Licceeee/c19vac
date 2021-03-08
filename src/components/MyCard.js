@@ -32,12 +32,9 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-const MyCard = ({ fields, id }) => {
+const MyCard = ({ name, vaccines, id }) => {
 
     const classes = useStyles();
- 
-    const {name, vaccines} = fields;
-    // const { id } = useParams();
 
     return (
         <>
@@ -46,9 +43,8 @@ const MyCard = ({ fields, id }) => {
                     
                         <h3 className={classes.heading}>{ name }</h3>
                         <h4>
-                        # vaccines: {vaccines ? vaccines.length : "0"}
+                        # vaccines: {vaccines}
                         </h4>
-                    
                     
                     <Link to={`/${id}`} className="link">
                         <Button variant="contained" color="secondary">

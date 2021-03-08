@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import { getContentfulData, getApiData } from './Api'
+import { getApiData } from './Api'
 import { Switch, Route } from "react-router-dom";
 import Nav from './components/Nav';
 import Footer from './components/Footer';
@@ -15,7 +15,7 @@ import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import BackgroundAni from "./components/BackgroundAni";
 
 
-import CsvDownload from "react-json-to-csv";
+
 
 function App() {
   const [data, setData] = useState();
@@ -25,16 +25,17 @@ function App() {
   const [global, setGlobal] = useState();
   const [darkMode, setDarkMode] = useState(true);
   const [userSearch, setUserSearch] = useState("");
+  const [loading, setLoading] = useState(true)
 
-  // TODO conditional fetching https://api.covid19api.com/summary
 
   useEffect(() => {
-    try {
-      getContentfulData("vaccineType").then(result => setVaccineTypes(result));
-    } catch (error) {
-      console.log(`connection problem: ${error}`);
 
-    }
+    getApiData("https://obscure-wildwood-82348.herokuapp.com/api/v1/vaccine_types")
+    .then(result => {
+      setLoading(false);
+      setVaccineTypes(result);
+    })
+
   }, []);
 
 
@@ -46,9 +47,6 @@ function App() {
 
   useEffect(() => {
     // data by states
-    // userSearch ?
-
-    //          https://api.covidtracking.com/v1/states/ca/current.json
     getApiData(`https://api.covidtracking.com/v1/states/${userSearch}/current.json`)
       .then(result => {
         setStates(result);
@@ -72,20 +70,6 @@ function App() {
 
 
 
-  useEffect(() => {
-    // own express server api
-    try {
-      return fetch("http://localhost:9000/API")
-        .then(response => response.json())
-        .then(jsonRes => console.log(jsonRes))
-
-    } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-
-
   const handleInput = ({ target }) => {
     console.log(target.value);
     setUserSearch(target.value);
@@ -100,6 +84,7 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
+
       <div className="App">
         <Nav userSearch={userSearch} handleInput={handleInput} darkMode={darkMode} setDarkMode={setDarkMode} />
 
@@ -107,33 +92,36 @@ function App() {
 
           <Route exact path="/">
 
-            {vaccineTypes && <Main vaccineTypes={vaccineTypes} />}
+
+            {vaccineTypes && <Main vaccineTypes={vaccineTypes} loading={loading}/>}
             <Container maxWidth="lg" id="statistics" name="statistics">
-              {global
+              {global 
                 ?
-                global && <>
-                  <GlobalStats {...global} />
-                  <CountryStats data={global} />
-                </>
-                :
-                data && <>
-                  <GlobalStatsUS data={data} />
-                  <StatesStats data={states} />
-                </>
 
-                // data && <Statistics data={data} states={states}/>
-              }
+                  global && <>
+                    <GlobalStats {...global} />
+                    <CountryStats data={global} />
+                  </>
+                  :
+                  data && <>
+                    <GlobalStatsUS data={data} />
+                    <StatesStats data={states} />
+                  </>
 
-            </Container>
-          </Route>
+                  // data && <Statistics data={data} states={states}/>
+                }
+
+              </Container>
+            </Route>
 
 
-          <Route exact path="/:id">
-            {vaccineTypes && <Details vaccines={vaccineTypes} />}
-          </Route>
+        <Route exact path="/:id">
+            {vaccineTypes && <Details loading={loading} setLoading={setLoading}/>}
+        </Route>
 
-        </Switch>
-        <BackgroundAni />
+      </Switch>
+    
+      <BackgroundAni />
 
         {/* https://www.youtube.com/watch?v=NkT2yiv-NZ4&ab_channel=uidotdev */}
 
@@ -144,11 +132,3 @@ function App() {
 }
 
 export default App;
-
-
-
-  // useEffect(() => {
-  //   // global data <3
-  //   getApiData("https://api.covid19api.com/summary")
-  //   .then(result => {setGlobal(result)})
-  // }, []);
