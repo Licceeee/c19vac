@@ -53,7 +53,7 @@ const Footer = () => {
             <div className="avatar">
               <a href="https://www.linkedin.com/in/alicia-schonefeld/" className="resize-on-hover"><Avatar alt="Alicia Schonefeld" src="https://tornode.org/static/core/assets/images/profile.jpg" className={classes.small} /></a>
               <a href="https://www.linkedin.com/in/reza-hajipour-aa07283b/?originalSubdomain=de" className="resize-on-hover"><Avatar alt="Reza Hajipour" src="http://www.eurochannel.com/images/stories/68563_O_Bebe_1_director.jpg" className={classes.small} /></a>
-              <a href="https://www.linkedin.com/in/selma-mikic-417951168/" className="resize-on-hover"><Avatar alt="Selma Mikic" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxAQEBAQEBAJCBAKDQoNDQkJDRsICQcNIB0iIiAdHx8kKDQsJCYxJx8fLTItMT1AQ0NDIys8QD8tQDRBOjcBCgoKDQ0NFw8OFTcZFhkrKzc3NzcrLSsrNysxLSs3LS0yNzI3LTc3Ky0tNS0rLSszLy03LTc3NysrKysrNysrK//AABEIAMgAyAMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQIDBAUGBwj/xAA+EAABAwIDBQUECAYBBQAAAAABAAIDBBEFEiEGMUFRcRMiYYGRMlJysQcUI5KhwdHwM0JDYoLhFVNjc8Lx/8QAGgEAAwEBAQEAAAAAAAAAAAAAAAECAwQFBv/EACURAAICAgICAgMAAwAAAAAAAAABAhEDIQQxElEiQQUTMhRScf/aAAwDAQACEQMRAD8A9fQkSKSaFui6R" className={classes.small} /></a>
+              <a href="https://www.linkedin.com/in/selma-mikic-417951168/" className="resize-on-hover"><Avatar alt="Selma Mikic" src="https://media-exp1.licdn.com/dms/image/C5603AQG6nBmVwINJkg/profile-displayphoto-shrink_200_200/0/1533554011928?e=1620864000&v=beta&t=GbAgiYBsRJm_U5MdxvGNquDoDY0ikt17Rd3vFK2oPo4" className={classes.small} /></a>
             </div>
           </div>
 
